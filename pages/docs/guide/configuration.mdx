@@ -1,0 +1,104 @@
+# 配置
+
+了解如何自定义 HDJX Docs 的各种配置。
+
+## 主题配置
+
+在 `theme.config.tsx` 中配置主题：
+
+```tsx
+export default {
+  logo: <span>My Docs</span>,
+  project: {
+    link: 'https://github.com/your-repo',
+  },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true,
+  },
+  toc: {
+    float: true,
+    title: '目录',
+  },
+}
+```
+
+## 主要配置项
+
+### Logo 和品牌
+
+```tsx
+{
+  logo: (
+    <span style={{ fontWeight: 700 }}>
+      <span style={{ color: '#0070f3' }}>HDJX</span> Docs
+    </span>
+  ),
+}
+```
+
+### 侧边栏
+
+```tsx
+{
+  sidebar: {
+    defaultMenuCollapseLevel: 1,  // 默认折叠层级
+    toggleButton: true,           // 显示切换按钮
+    autoCollapse: true,           // 自动折叠非活动目录
+  },
+}
+```
+
+### 目录
+
+```tsx
+{
+  toc: {
+    float: true,        // 浮动目录
+    backToTop: true,    // 返回顶部按钮
+    title: '目录',      // 目录标题
+  },
+}
+```
+
+### 导航
+
+```tsx
+{
+  navigation: {
+    prev: true,  // 显示上一页
+    next: true,  // 显示下一页
+  },
+}
+```
+
+### 页脚
+
+```tsx
+{
+  footer: {
+    text: (
+      <span>
+        {new Date().getFullYear()} © HDJX
+      </span>
+    ),
+  },
+}
+```
+
+## Next.js 配置
+
+在 `next.config.js` 中配置：
+
+```js
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
+})
+
+module.exports = withNextra()
+```
+
+## 下一步
+
+- [自定义主题](/docs/advanced/custom-theme) - 深度自定义样式

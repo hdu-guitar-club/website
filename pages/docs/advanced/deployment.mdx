@@ -1,0 +1,90 @@
+# 部署
+
+将 HDJX Docs 部署到生产环境。
+
+## 构建项目
+
+```bash
+npm run build
+```
+
+构建完成后，静态文件将生成在 `.next` 目录中。
+
+## 部署方式
+
+### Vercel（推荐）
+
+[Vercel](https://vercel.com/) 是 Next.js 的官方托管平台，部署最简单：
+
+1. 将代码推送到 GitHub
+2. 在 Vercel 导入项目
+3. 自动检测 Next.js 配置
+4. 点击部署
+
+### 静态导出
+
+如果需要纯静态部署：
+
+```js
+// next.config.js
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
+})
+
+module.exports = withNextra({
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+})
+```
+
+然后运行：
+
+```bash
+npm run build
+```
+
+静态文件将输出到 `out` 目录。
+
+### Docker
+
+创建 `Dockerfile`：
+
+```dockerfile
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+构建并运行：
+
+```bash
+docker build -t hdjx-docs .
+docker run -p 3000:3000 hdjx-docs
+```
+
+## 环境变量
+
+在 `.env.local` 中配置环境变量：
+
+```env
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+## 恭喜！🎉
+
+你已经完成了 HDJX Docs 的所有配置和部署！
