@@ -1,0 +1,57 @@
+# 组件概览
+
+HDJX Docs 提供了一套完整的 UI 组件库，基于 Radix UI 和 Tailwind CSS 构建。
+
+## 设计原则
+
+### 可访问性优先
+
+所有组件都遵循 WAI-ARIA 标准，确保键盘导航和屏幕阅读器支持。
+
+### 可定制性
+
+组件使用 Tailwind CSS 构建，可以通过 `className` 属性轻松自定义样式。
+
+### 类型安全
+
+所有组件都使用 TypeScript 编写，提供完整的类型定义。
+
+## 组件分类
+
+### 表单组件
+
+用于收集用户输入的组件：
+
+- [Button](/docs/components/button) - 按钮组件
+- [Input](/docs/components/input) - 输入框组件
+- [Select](/docs/components/select) - 选择器组件
+- [Checkbox](/docs/components/checkbox) - 复选框组件
+
+### 反馈组件
+
+用于向用户展示信息的组件：
+
+- [Dialog](/docs/components/dialog) - 对话框组件
+- [Toast](/docs/components/toast) - 提示组件
+- [AlertDialog](/docs/components/alert-dialog) - 警告框组件
+
+## 安装
+
+组件已经包含在项目中，可以直接导入使用：
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+```
+
+## 主题定制
+
+组件使用 CSS 变量进行主题定制，你可以在 `globals.css` 中修改：
+
+```css
+:root {
+  --primary: oklch(0.5 0.2 250);
+  --secondary: oklch(0.7 0.1 250);
+  /* ... */
+}
+```

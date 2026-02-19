@@ -1,6 +1,11 @@
-const withNextra = require('nextra')({
-  theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.tsx',
-})
+import nextra from "nextra";
 
-module.exports = withNextra()
+const withNextra = nextra({
+  latex: true,
+  search: {
+    codeblocks: false,
+  },
+  contentDirBasePath: "/docs",
+});
+
+export default withNextra();

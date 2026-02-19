@@ -1,0 +1,64 @@
+# Toast 提示
+
+Toast 组件用于显示简短的消息提示。
+
+## 基础用法
+
+```tsx
+import { useToast } from '@/components/ui/use-toast';
+import { Button } from '@/components/ui/button';
+
+export const ToastDemo = () => {
+  const { toast } = useToast();
+
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          title: '操作成功',
+          description: '你的更改已保存。',
+        });
+      }}
+    >
+      显示 Toast
+    </Button>
+  );
+};
+```
+
+## 变体
+
+```tsx
+toast({
+  variant: 'default',
+  title: '默认提示',
+});
+
+toast({
+  variant: 'destructive',
+  title: '错误提示',
+  description: '操作失败，请重试。',
+});
+```
+
+## 自定义操作
+
+```tsx
+toast({
+  title: '新消息',
+  description: '你有一条新消息。',
+  action: <ToastAction altText="查看">查看</ToastAction>,
+});
+```
+
+## API
+
+### toast() 参数
+
+| 属性 | 类型 | 默认值 | 说明 |
+|-----|------|-------|------|
+| `title` | `string` | - | 标题 |
+| `description` | `string` | - | 描述 |
+| `variant` | `default` \| `destructive` | `default` | 变体样式 |
+| `action` | `ReactNode` | - | 操作按钮 |
+| `duration` | `number` | `5000` | 显示时长(ms) |

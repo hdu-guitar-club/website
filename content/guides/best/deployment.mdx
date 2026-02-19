@@ -1,0 +1,106 @@
+# 部署指南
+
+将文档站点部署到各种平台。
+
+## Vercel 部署
+
+### 自动部署
+
+1. 将代码推送到 GitHub
+2. 在 Vercel 导入项目
+3. Vercel 自动检测 Next.js 并配置构建设置
+
+### 配置文件
+
+```json
+// vercel.json
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "framework": "nextjs"
+}
+```
+
+## Netlify 部署
+
+### 配置文件
+
+```toml
+# netlify.toml
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+```
+
+## Docker 部署
+
+### Dockerfile
+
+```dockerfile
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
+
+COPY . .
+RUN pnpm build
+
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+EXPOSE 3000
+CMD ["node", "server.js"]
+```
+
+### 构建和运行
+
+```bash
+docker build -t hdjx-docs .
+docker run -p 3000:3000 hdjx-docs
+```
+
+## 静态导出
+
+### 配置
+
+```javascript
+// next.config.js
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
+});
+
+module.exports = withNextra({
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+});
+```
+
+### 构建
+
+```bash
+pnpm build
+```
+
+输出目录为 `out/`，可以部署到任何静态托管服务。
+
+## 部署检查清单
+
+- [ ] 环境变量配置正确
+- [ ] 构建命令正确
+- [ ] 输出目录正确
+- [ ] 自定义域名配置
+- [ ] HTTPS 证书配置
+- [ ] CDN 缓存配置
+- [ ] 错误监控配置
+- [ ] 性能监控配置

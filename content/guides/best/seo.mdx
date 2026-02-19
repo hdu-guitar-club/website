@@ -1,0 +1,103 @@
+# SEO 优化
+
+优化文档站点的搜索引擎可见性。
+
+## 基础 SEO 配置
+
+### 页面元数据
+
+在每个 MDX 文件中添加 frontmatter：
+
+```mdx
+---
+title: 页面标题
+description: 页面描述，用于搜索引擎结果
+keywords: 关键词1, 关键词2, 关键词3
+---
+```
+
+### 全局 SEO 配置
+
+```typescript
+// theme.config.tsx
+export default {
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – HDJX Docs',
+      defaultTitle: 'HDJX Docs',
+      description: 'HDJX Docs 文档站点',
+      openGraph: {
+        type: 'website',
+        locale: 'zh_CN',
+        url: 'https://docs.example.com',
+        siteName: 'HDJX Docs',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@your_twitter',
+      },
+    };
+  },
+};
+```
+
+## 结构化数据
+
+### 添加 JSON-LD
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'HDJX Docs',
+              url: 'https://docs.example.com',
+            }),
+          }}
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+## sitemap.xml
+
+使用 `next-sitemap` 自动生成：
+
+```bash
+pnpm add -D next-sitemap
+```
+
+```javascript
+// next-sitemap.config.js
+module.exports = {
+  siteUrl: 'https://docs.example.com',
+  generateRobotsTxt: true,
+};
+```
+
+## robots.txt
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.example.com/sitemap.xml
+```
+
+## SEO 最佳实践
+
+1. **语义化 HTML**：使用正确的标题层级
+2. **图片优化**：添加 alt 属性
+3. **内部链接**：建立良好的内部链接结构
+4. **页面速度**：优化加载性能
+5. **移动友好**：确保响应式设计

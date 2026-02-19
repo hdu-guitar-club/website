@@ -1,0 +1,67 @@
+# 安装
+
+本指南将帮助你快速安装和配置 HDJX Docs。
+
+## 系统要求
+
+- Node.js 18.17 或更高版本
+- pnpm、npm 或 yarn
+
+## 创建新项目
+
+使用以下命令创建一个新的 HDJX Docs 项目：
+
+```bash
+# 使用 pnpm
+pnpm create next-app my-docs
+
+# 进入项目目录
+cd my-docs
+
+# 安装依赖
+pnpm add nextra nextra-theme-docs
+```
+
+## 配置项目
+
+### 1. 更新 `next.config.js`
+
+```javascript
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
+});
+
+module.exports = withNextra();
+```
+
+### 2. 创建 `theme.config.tsx`
+
+```typescript
+export default {
+  logo: <span>My Docs</span>,
+  project: {
+    link: 'https://github.com/your-repo',
+  },
+};
+```
+
+### 3. 创建内容目录
+
+```bash
+mkdir -p content
+```
+
+## 验证安装
+
+运行开发服务器：
+
+```bash
+pnpm dev
+```
+
+打开 [http://localhost:3000](http://localhost:3000) 查看你的文档站点。
+
+## 下一步
+
+安装完成后，请查看 [项目结构](/docs/getting-started/project-structure) 了解更多。

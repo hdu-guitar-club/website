@@ -1,0 +1,79 @@
+# Button 按钮
+
+按钮组件用于触发操作或事件，如提交表单、打开对话框等。
+
+## 基础用法
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+export const ButtonDemo = () => {
+  return <Button>点击我</Button>;
+};
+```
+
+## 变体
+
+Button 组件提供多种变体样式：
+
+```tsx
+<Button variant="default">默认</Button>
+<Button variant="secondary">次要</Button>
+<Button variant="destructive">危险</Button>
+<Button variant="outline">轮廓</Button>
+<Button variant="ghost">幽灵</Button>
+<Button variant="link">链接</Button>
+```
+
+## 尺寸
+
+支持多种尺寸：
+
+```tsx
+<Button size="sm">小尺寸</Button>
+<Button size="default">默认尺寸</Button>
+<Button size="lg">大尺寸</Button>
+<Button size="icon">图标</Button>
+```
+
+## API
+
+### Props
+
+| 属性 | 类型 | 默认值 | 说明 |
+|-----|------|-------|------|
+| `variant` | `default` \| `secondary` \| `destructive` \| `outline` \| `ghost` \| `link` | `default` | 按钮样式变体 |
+| `size` | `default` \| `sm` \| `lg` \| `icon` | `default` | 按钮尺寸 |
+| `asChild` | `boolean` | `false` | 作为子元素渲染 |
+| `className` | `string` | - | 自定义类名 |
+| `disabled` | `boolean` | `false` | 禁用状态 |
+
+## 示例
+
+### 带图标的按钮
+
+```tsx
+import { Mail } from 'lucide-react';
+
+<Button>
+  <Mail className="mr-2 h-4 w-4" />
+  发送邮件
+</Button>
+```
+
+### 加载状态
+
+```tsx
+<Button disabled>
+  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+  加载中...
+</Button>
+```
+
+### 作为链接使用
+
+```tsx
+<Button asChild>
+  <a href="/docs">查看文档</a>
+</Button>
+```

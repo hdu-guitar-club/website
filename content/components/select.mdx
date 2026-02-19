@@ -1,0 +1,72 @@
+# Select 选择器
+
+选择器组件用于从选项列表中选择一个值。
+
+## 基础用法
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+export const SelectDemo = () => {
+  return (
+    <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="选择一个选项" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">苹果</SelectItem>
+        <SelectItem value="banana">香蕉</SelectItem>
+        <SelectItem value="orange">橙子</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+};
+```
+
+## 禁用状态
+
+```tsx
+<Select disabled>
+  <SelectTrigger>
+    <SelectValue placeholder="禁用状态" />
+  </SelectTrigger>
+</Select>
+```
+
+## 分组选项
+
+```tsx
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="选择水果" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>热带水果</SelectLabel>
+      <SelectItem value="mango">芒果</SelectItem>
+      <SelectItem value="pineapple">菠萝</SelectItem>
+    </SelectGroup>
+    <SelectGroup>
+      <SelectLabel>温带水果</SelectLabel>
+      <SelectItem value="apple">苹果</SelectItem>
+      <SelectItem value="pear">梨</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+## API
+
+### Select Props
+
+| 属性 | 类型 | 默认值 | 说明 |
+|-----|------|-------|------|
+| `value` | `string` | - | 当前选中值 |
+| `onValueChange` | `function` | - | 值变化回调 |
+| `disabled` | `boolean` | `false` | 禁用状态 |

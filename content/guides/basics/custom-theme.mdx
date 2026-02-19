@@ -1,0 +1,92 @@
+# 自定义主题
+
+学习如何自定义文档站点的外观和主题。
+
+## 主题配置文件
+
+`theme.config.tsx` 是主题配置的核心文件：
+
+```typescript
+export default {
+  logo: <span>My Docs</span>,
+  project: {
+    link: 'https://github.com/your-repo',
+  },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true,
+  },
+};
+```
+
+## 主要配置项
+
+### Logo 和品牌
+
+```typescript
+export default {
+  logo: (
+    <span style={{ fontWeight: 700 }}>
+      <span style={{ color: '#0070f3' }}>My</span> Docs
+    </span>
+  ),
+};
+```
+
+### 导航栏
+
+```typescript
+export default {
+  navigation: {
+    prev: true,
+    next: true,
+  },
+};
+```
+
+### 侧边栏
+
+```typescript
+export default {
+  sidebar: {
+    defaultMenuCollapseLevel: 1, // 默认展开层级
+    toggleButton: true,          // 显示切换按钮
+    autoCollapse: true,          // 自动折叠
+  },
+};
+```
+
+### 目录
+
+```typescript
+export default {
+  toc: {
+    backToTop: true,  // 返回顶部按钮
+    float: true,      // 浮动目录
+    title: '目录',    // 目录标题
+  },
+};
+```
+
+## 深色模式
+
+```typescript
+export default {
+  darkMode: true,
+  nextThemes: {
+    defaultTheme: 'system',
+    storageKey: 'theme',
+  },
+};
+```
+
+## 自定义样式
+
+在 `globals.css` 中覆盖 CSS 变量：
+
+```css
+:root {
+  --nextra-primary-hue: 210deg;
+  --nextra-primary-saturation: 100%;
+}
+```

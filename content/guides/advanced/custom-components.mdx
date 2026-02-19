@@ -1,0 +1,105 @@
+# 自定义组件
+
+学习如何创建和使用自定义 MDX 组件。
+
+## 创建组件
+
+### 基础组件
+
+```tsx
+// components/mdx/callout.tsx
+interface ICalloutProps {
+  type?: 'info' | 'warning' | 'error';
+  children: React.ReactNode;
+}
+
+export const Callout = ({ type = 'info', children }: ICalloutProps) => {
+  const styles = {
+    info: 'bg-blue-50 border-blue-200',
+    warning: 'bg-yellow-50 border-yellow-200',
+    error: 'bg-red-50 border-red-200',
+  };
+
+  return (
+    <div className={`p-4 border rounded-lg ${styles[type]}`}>
+      {children}
+    </div>
+  );
+};
+```
+
+### 注册组件
+
+```tsx
+// mdx-components.tsx
+import { Callout } from '@/components/mdx/callout';
+
+export const useMDXComponents = (components) => {
+  return {
+    ...components,
+    Callout,
+  };
+};
+```
+
+## 使用组件
+
+```mdx
+import { Callout } from '@/components/mdx/callout';
+
+<Callout type="warning">
+  这是一个警告提示
+</Callout>
+```
+
+## 常用自定义组件
+
+### 信息卡片
+
+```tsx
+export const InfoCard = ({ title, children }: IInfoCardProps) => {
+  return (
+    <div className="p-6 bg-gray-50 rounded-lg border">
+      <h3 className="font-semibold mb-2">{title}</h3>
+      <div className="text-gray-600">{children}</div>
+    </div>
+  );
+};
+```
+
+### 代码预览
+
+```tsx
+export const CodePreview = ({ code, preview }: ICodePreviewProps) => {
+  const [showCode, setShowCode] = useState(false);
+
+  return (
+    <div className="border rounded-lg overflow-hidden">
+      <div className="p-4 bg-white">{preview}</div>
+      <button onClick={() => setShowCode(!showCode)}>
+        {showCode ? '隐藏代码' : '显示代码'}
+      </button>
+      {showCode && <pre className="p-4 bg-gray-900">{code}</pre>}
+    </div>
+  );
+};
+```
+
+### 步骤指南
+
+```tsx
+export const Steps = ({ children }: IStepsProps) => {
+  return (
+    <div className="space-y-4">
+      {Children.map(children, (child, index) => (
+        <div className="flex gap-4">
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+            {index + 1}
+          </div>
+          <div className="flex-1">{child}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+```
