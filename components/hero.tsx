@@ -26,9 +26,9 @@ const textRevealVariants = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-900 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-zinc-950 via-zinc-950 to-zinc-900 pointer-events-none" />
 
       {/* Subtle radial glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-zinc-800/20 rounded-full blur-3xl pointer-events-none" />
