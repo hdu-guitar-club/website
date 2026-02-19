@@ -4,16 +4,19 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const logos = [
-  { name: "Vercel", width: 100 },
-  { name: "Stripe", width: 80 },
-  { name: "Linear", width: 90 },
-  { name: "Notion", width: 100 },
-  { name: "Figma", width: 70 },
-  { name: "Slack", width: 90 },
-  { name: "Discord", width: 100 },
-  { name: "GitHub", width: 90 },
+  { name: "杭电各学院", width: 100 },
+  { name: "校学生会", width: 80 },
+  { name: "十佳歌手", width: 90 },
+  { name: "MAO Livehouse", width: 100 },
+  { name: "loopy", width: 70 },
+  { name: "大麦66", width: 90 },
+  { name: "西湖高校音乐节", width: 100 },
+  { name: "礼拜三乐队", width: 90 },
 ]
 
+/**
+ * Logo marquee component showing partners and bands
+ */
 export function LogoMarquee() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -26,7 +29,7 @@ export function LogoMarquee() {
         transition={{ duration: 0.6 }}
         className="text-center mb-10"
       >
-        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">Trusted by industry leaders</p>
+        <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">我们的合作与演出舞台</p>
       </motion.div>
 
       <div className="relative">

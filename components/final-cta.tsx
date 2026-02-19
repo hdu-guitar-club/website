@@ -5,6 +5,9 @@ import { useRef } from "react"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+/**
+ * Final CTA section component for HDU Guitar Club
+ */
 export function FinalCTA() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -22,10 +25,11 @@ export function FinalCTA() {
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight"
           style={{ fontFamily: "var(--font-cal-sans)" }}
         >
-          Ready to ship faster?
+          准备好加入我们，一起玩音乐了吗？
         </h2>
         <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-          Join thousands of teams already building with Apex. Start free, no credit card required.
+          加入杭电吉协，在学活南A105的专业排练房里，和志同道合的伙伴一起组乐队、练乐器、办演出，释放你的音乐热爱；
+          这里有理工男的浪漫与热血，有小众音乐的坚守与绽放，每一份热爱都能被看见、被听见。
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -33,7 +37,7 @@ export function FinalCTA() {
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-14 text-base font-medium shadow-lg shadow-white/20"
           >
-            Get Started for Free
+            立即加入
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           <Button
@@ -41,11 +45,13 @@ export function FinalCTA() {
             size="lg"
             className="rounded-full px-8 h-14 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
           >
-            Talk to Sales
+            咨询排练/演出
           </Button>
         </div>
 
-        <p className="mt-8 text-sm text-zinc-500">Free forever for individuals. Team plans start at $29/month.</p>
+        <p className="mt-8 text-sm text-zinc-500">
+          社费50元覆盖4年，无任何额外费用，所有成员平等享受社团资源，费用全部用于排练房设备维护、演出举办，透明公开。
+        </p>
       </motion.div>
     </section>
   )

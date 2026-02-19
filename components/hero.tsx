@@ -24,6 +24,9 @@ const textRevealVariants = {
   }),
 };
 
+/**
+ * Hero section component for HDU Guitar Club
+ */
 export function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden">
@@ -42,7 +45,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-          <span className="text-sm text-zinc-400">Now in Public Beta</span>
+          <span className="text-sm text-zinc-400">排练房开放中</span>
         </motion.div>
 
         {/* Headline with text mask animation */}
@@ -58,7 +61,7 @@ export function Hero() {
               animate="visible"
               custom={0}
             >
-              Ship faster.
+              杭电吉协
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -69,7 +72,7 @@ export function Hero() {
               animate="visible"
               custom={1}
             >
-              Scale smarter.
+              HDU Guitar Club
             </motion.span>
           </span>
         </h1>
@@ -81,8 +84,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          The modern platform for teams who ship fast. Built for scale, designed for speed.
-          Everything you need to build, deploy, and grow.
+          杭电吉协是杭州电子科技大学的音乐爱好者俱乐部，无面试、无官僚，只为热爱音乐的你提供纯粹的交流与创作空间，
+          这里有专业排练房、志同道合的伙伴，还有无限演出可能。
         </motion.p>
 
         {/* CTAs */}
@@ -96,7 +99,7 @@ export function Hero() {
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
           >
-            Start Building
+            立即加入我们
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
           <Button
@@ -104,7 +107,7 @@ export function Hero() {
             size="lg"
             className="rounded-full px-8 h-12 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
           >
-            View Demo
+            预约排练房
           </Button>
         </motion.div>
 
@@ -133,7 +136,8 @@ export function Hero() {
             ))}
           </div>
           <p className="text-sm text-zinc-500">
-            Trusted by <span className="text-zinc-300 font-medium">2,000+</span> teams worldwide
+            已有 <span className="text-zinc-300 font-medium">500+</span>{" "}
+            音乐爱好者加入，几十支乐队在此成长，传承杭电摇滚精神
           </p>
         </motion.div>
       </div>

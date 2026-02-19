@@ -1,49 +1,52 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for side projects and small teams",
-    price: { monthly: 0, yearly: 0 },
-    features: ["3 team members", "10 projects", "Basic analytics", "Community support", "1GB storage"],
-    cta: "Get Started",
+    name: "普通成员",
+    description: "适合所有热爱音乐的同学",
+    price: "50元/4年",
+    features: [
+      "免费使用学活南A105排练房及公用设备",
+      "参与社团日常活动、乐器教学",
+      "加入社团专属社群",
+      "优先预约排练时段",
+      "观看各类演出活动",
+    ],
+    cta: "缴纳社费加入",
     highlighted: false,
   },
   {
-    name: "Pro",
-    description: "For growing teams that need more power",
-    price: { monthly: 29, yearly: 24 },
+    name: "核心成员/乐队成员",
+    description: "深度参与社团核心活动",
+    price: "无额外费用",
     features: [
-      "Unlimited team members",
-      "Unlimited projects",
-      "Advanced analytics",
-      "Priority support",
-      "100GB storage",
-      "Custom domains",
-      "API access",
+      "包含在50元社费内",
+      "优先参与各类演出、GR摇滚节等核心活动",
+      "享受专业音乐指导与设备优先使用权",
+      "支持原创作品创作与展示",
+      "拥有专属排练时段",
+      "可代表吉协参与外校交流演出",
     ],
-    cta: "Start Free Trial",
+    cta: "申请成为核心成员",
     highlighted: true,
   },
   {
-    name: "Enterprise",
-    description: "For organizations with advanced needs",
-    price: { monthly: 99, yearly: 79 },
+    name: "合作/赞助方",
+    description: "与杭电吉协携手共创",
+    price: "联系我们详谈",
     features: [
-      "Everything in Pro",
-      "SSO & SAML",
-      "Dedicated support",
-      "SLA guarantee",
-      "Unlimited storage",
-      "Custom integrations",
-      "Audit logs",
+      "冠名社团演出与活动（如GR摇滚节）",
+      "获得品牌露出与宣传机会",
+      "定制音乐合作项目",
+      "参与社团专属活动策划",
+      "对接吉协优秀乐队资源",
     ],
-    cta: "Contact Sales",
+    cta: "联系合作",
     highlighted: false,
   },
 ]
@@ -61,10 +64,12 @@ function BorderBeam() {
   )
 }
 
+/**
+ * Pricing section component for HDU Guitar Club membership plans
+ */
 export function Pricing() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly")
 
   return (
     <section id="pricing" className="py-24 px-4">
@@ -79,48 +84,11 @@ export function Pricing() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Simple, transparent pricing
+            加入杭电吉协
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
-            Start free, scale as you grow. No hidden fees, no surprises.
+            一次缴费，四年受益。所有成员平等享受社团资源，费用全部用于排练房设备维护、演出举办，透明公开。
           </p>
-
-          {/* Billing Toggle */}
-          <div className="inline-flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "monthly" ? "text-white" : "text-zinc-400"
-              }`}
-            >
-              {billingCycle === "monthly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Monthly</span>
-            </button>
-            <button
-              onClick={() => setBillingCycle("yearly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "yearly" ? "text-white" : "text-zinc-400"
-              }`}
-            >
-              {billingCycle === "yearly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Yearly</span>
-              <span className="relative z-10 ml-2 px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">
-                -20%
-              </span>
-            </button>
-          </div>
         </motion.div>
 
         <motion.div
@@ -146,7 +114,7 @@ export function Pricing() {
 
               {plan.highlighted && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-white text-zinc-950 text-xs font-medium rounded-full">
-                  Most Popular
+                  推荐
                 </div>
               )}
 
@@ -157,12 +125,8 @@ export function Pricing() {
 
               <div className="mb-6">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">${plan.price[billingCycle]}</span>
-                  {plan.price.monthly > 0 && <span className="text-zinc-400 text-sm">/month</span>}
+                  <span className="text-3xl font-bold text-white">{plan.price}</span>
                 </div>
-                {billingCycle === "yearly" && plan.price.yearly > 0 && (
-                  <p className="text-xs text-zinc-500 mt-1">Billed annually (${plan.price.yearly * 12}/year)</p>
-                )}
               </div>
 
               <ul className="space-y-3 mb-8">

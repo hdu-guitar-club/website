@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
-import { Activity, Command, BarChart3, Zap, Shield } from "lucide-react"
+import { Music, Guitar, Mic, Users, Smartphone } from "lucide-react"
 
 const containerVariants = {
   hidden: {},
@@ -49,36 +49,6 @@ function SystemStatus() {
   )
 }
 
-function KeyboardCommand() {
-  const [pressed, setPressed] = useState(false)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPressed(true)
-      setTimeout(() => setPressed(false), 200)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex items-center gap-1">
-      <motion.kbd
-        animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
-        className="px-2 py-1 text-xs bg-zinc-800 border border-zinc-700 rounded text-zinc-300 font-mono"
-      >
-        ⌘
-      </motion.kbd>
-      <motion.kbd
-        animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
-        className="px-2 py-1 text-xs bg-zinc-800 border border-zinc-700 rounded text-zinc-300 font-mono"
-      >
-        K
-      </motion.kbd>
-    </div>
-  )
-}
-
 function AnimatedChart() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
@@ -114,6 +84,9 @@ function AnimatedChart() {
   )
 }
 
+/**
+ * Bento grid component showcasing HDU Guitar Club features
+ */
 export function BentoGrid() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -131,10 +104,10 @@ export function BentoGrid() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Everything you need to ship
+            在这里，音乐没有门槛
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
-            Built for modern teams. Powerful features that help you build, deploy, and scale faster than ever.
+            专业设备、多元乐器、丰富演出，只为热爱音乐的你提供最纯粹的交流与创作空间。
           </p>
         </motion.div>
 
@@ -145,7 +118,7 @@ export function BentoGrid() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {/* Large card - System Status */}
+          {/* Large card - 专业排练房 */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-2 group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
@@ -153,83 +126,99 @@ export function BentoGrid() {
             <div className="flex items-start justify-between mb-8">
               <div>
                 <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-                  <Activity className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+                  <Music className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Real-time Monitoring</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">专业排练房</h3>
                 <p className="text-zinc-400 text-sm">
-                  Track system health, performance metrics, and alerts in real-time across all your deployments.
+                  专属活动室学活南A105，配备全国高校顶尖音响设备、完整鼓组、公用吉他/贝斯等，
+                  设备可用率99%，每周开放40+小时，月均接待100+次排练，夜晚的排练房总有琴弦舞动与鼓点跳跃，见证每一份音乐热爱的成长。
                 </p>
               </div>
               <SystemStatus />
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {["CPU", "Memory", "Network", "Storage"].map((metric) => (
+              {["设备可用率", "周开放时长", "月排练次数", "成员满意度"].map((metric) => (
                 <div key={metric} className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">{Math.floor(Math.random() * 40 + 60)}%</div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    {metric === "设备可用率" && "99%"}
+                    {metric === "周开放时长" && "40+h"}
+                    {metric === "月排练次数" && "100+"}
+                    {metric === "成员满意度" && "98%"}
+                  </div>
                   <div className="text-xs text-zinc-500">{metric}</div>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Command Palette */}
+          {/* 多元乐器支持 */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Command className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Guitar className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Command Palette</h3>
-            <p className="text-zinc-400 text-sm mb-6">Navigate anywhere instantly with powerful keyboard shortcuts.</p>
-            <KeyboardCommand />
+            <h3 className="text-lg font-semibold text-white mb-2">多元乐器支持</h3>
+            <p className="text-zinc-400 text-sm mb-6">
+              不止于吉他！吉协涵盖鼓、木吉他、电吉他、贝斯、键盘等各类乐器，只要你热爱音乐，无论擅长哪种乐器，都能找到专属位置。
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">JPOP</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">朋克</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">流行摇滚</span>
+            </div>
           </motion.div>
 
-          {/* Analytics */}
+          {/* 丰富演出机会 */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <BarChart3 className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Mic className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Analytics</h3>
-            <p className="text-zinc-400 text-sm mb-4">Deep insights into your application performance.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">丰富演出机会</h3>
+            <p className="text-zinc-400 text-sm mb-4">
+              承包各学院迎新演出、校园十佳歌手决赛伴奏，每年固定举办GR摇滚节、藤廊音乐会、草坪音乐派对，登上MAO等Livehouse舞台。
+            </p>
             <AnimatedChart />
           </motion.div>
 
-          {/* Performance */}
+          {/* 零门槛加入 */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Zap className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Users className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Blazing Fast</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">零门槛加入</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              Edge-optimized infrastructure for sub-50ms response times globally.
+              无面试、无官僚主义，只要对音乐感兴趣，无论新手还是有经验乐手，均可加入。社费仅50元，一次性缴纳，覆盖4年。
             </p>
             <div className="flex items-center gap-2 text-emerald-500 text-sm">
-              <span className="font-mono">~32ms</span>
-              <span className="text-zinc-500">avg response</span>
+              <span className="font-mono">3天</span>
+              <span className="text-zinc-500">内组队成功</span>
             </div>
           </motion.div>
 
-          {/* Security */}
+          {/* 全平台运营 */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
           >
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Shield className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              <Smartphone className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Enterprise Security</h3>
-            <p className="text-zinc-400 text-sm mb-4">SOC2 compliant with end-to-end encryption and SSO support.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">全平台运营</h3>
+            <p className="text-zinc-400 text-sm mb-4">
+              小红书、微信公众号、bilibili均有官方账号，同步活动预告、演出视频、教学资料。排练房预约小程序开发中。
+            </p>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">SOC2</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">GDPR</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">HIPAA</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">小红书</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">公众号</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">B站</span>
             </div>
           </motion.div>
         </motion.div>

@@ -5,41 +5,39 @@ export default {
    */
   metadata: {
     title: {
-      default: "Mantine Next.js and Nextra template",
-      template: "%s | Mantine Next.js and Nextra template",
+      default: "杭电吉协 HDU Guitar Club",
+      template: "%s | 杭电吉协",
     },
-    description: "I am using Mantine with Next.js and Nextra!",
-    metadataBase: new URL("https://next-app-nextra-template.vercel.app/"),
+    description: "杭电吉协是杭州电子科技大学的音乐爱好者俱乐部，无面试、无官僚，只为热爱音乐的你提供纯粹的交流与创作空间。",
+    metadataBase: new URL("https://hdu-guitar-club.vercel.app/"),
     keywords: [
-      "Mantine",
-      "Nextra",
-      "Next.js",
-      "React",
-      "JavaScript",
-      "MDX",
-      "Markdown",
-      "Static Site Generator",
+      "杭电吉协",
+      "HDU Guitar Club",
+      "杭州电子科技大学",
+      "吉他社团",
+      "音乐社团",
+      "乐队",
+      "摇滚",
+      "排练房",
     ],
     generator: "Next.js",
-    applicationName: "Mantine",
+    applicationName: "杭电吉协",
     appleWebApp: {
-      title: "Mantine",
+      title: "杭电吉协",
     },
     openGraph: {
-      // https://github.com/vercel/next.js/discussions/50189#discussioncomment-10826632
       url: "./",
-      siteName: "Mantine",
-      locale: "en_US",
+      siteName: "杭电吉协",
+      locale: "zh_CN",
       type: "website",
     },
     other: {
       "msapplication-TileColor": "#fff",
     },
     twitter: {
-      site: "https://next-app-nextra-template.vercel.app/",
+      site: "https://hdu-guitar-club.vercel.app/",
     },
     alternates: {
-      // https://github.com/vercel/next.js/discussions/50189#discussioncomment-10826632
       canonical: "./",
     },
   },
@@ -47,7 +45,7 @@ export default {
    * Nextra Layout component configuration
    */
   nextraLayout: {
-    docsRepositoryBase: "https://github.com/gfazioli/next-app-nextra-template/tree/main/app/docs/",
+    docsRepositoryBase: "https://github.com/hdu-guitar-club/hdjx-docs/tree/main/app/docs/",
     sidebar: {
       defaultMenuCollapseLevel: 1,
     },
@@ -64,31 +62,23 @@ export default {
   /**
    * GitHub API configuration
    * @see https://docs.github.com/en/rest/reference/repos#releases
-   *
-   * The GitHub API token is optional for rate limiting.
-   * If you want to use it, create a personal access token with the `repo` scope.
-   *
-   * This information is used to fetch the releases from the GitHub API.
    */
   gitHub: {
-    repo: "gfazioli/next-app-nextra-template",
+    repo: "hdu-guitar-club/hdjx-docs",
     apiUrl: "https://api.github.com",
-    releasesUrl: "https://api.github.com/repos/gfazioli/next-app-nextra-template/releases",
+    releasesUrl: "https://api.github.com/repos/hdu-guitar-club/hdjx-docs/releases",
   },
 
   /**
    * Release notes configuration
-   * This is used to link the release notes in the app.
    */
   releaseNotes: {
-    url: "https://github.com/gfazioli/next-app-nextra-template/releases",
+    url: "https://github.com/hdu-guitar-club/hdjx-docs/releases",
     maxReleases: 10,
   },
 
   /**
    * Search configuration (for pagefind)
-   * This is used to configure the search engine API.
-   * @see /app/api/search/route.ts
    */
   search: {
     queryKeyword: "q",
@@ -97,6 +87,6 @@ export default {
     defaultMaxResults: 5,
     excerptLengthKeyword: "excerptLength",
     defaultExcerptLength: 30,
-    defaultLanguage: "en",
+    defaultLanguage: "zh",
   },
-} as const;
+}
