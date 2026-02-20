@@ -3,13 +3,28 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedTooltip } from "./ui/animated-tooltip";
 
-const avatars = [
-  "/professional-headshot-1.png",
-  "/professional-headshot-2.png",
-  "/professional-headshot-3.png",
-  "/professional-headshot-4.png",
-  "/professional-headshot-5.png",
+const avatars = ["/images/qi.png", "/images/vessel.png", "/images/joint.png"];
+const items = [
+  {
+    id: 0,
+    name: "炁",
+    designation: "专业排练房负责人",
+    image: avatars[0],
+  },
+  {
+    id: 1,
+    name: "舟",
+    designation: "专业排练房负责人",
+    image: avatars[1],
+  },
+  {
+    id: 2,
+    name: "JOINT",
+    designation: "专业排练房负责人",
+    image: avatars[2],
+  },
 ];
 
 const textRevealVariants = {
@@ -118,6 +133,10 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="flex flex-col items-center gap-4"
         >
+          {/* 带有动效的乐队头像 */}
+          {/* <div className="flex flex-row">
+            <AnimatedTooltip items={items} />
+          </div> */}
           <div className="flex items-center -space-x-3">
             {avatars.map((avatar, index) => (
               <motion.div
