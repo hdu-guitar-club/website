@@ -3,29 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedTooltip } from "./ui/animated-tooltip";
-
-const avatars = ["/images/qi.png", "/images/vessel.png", "/images/joint.png"];
-const items = [
-  {
-    id: 0,
-    name: "炁",
-    designation: "专业排练房负责人",
-    image: avatars[0],
-  },
-  {
-    id: 1,
-    name: "舟",
-    designation: "专业排练房负责人",
-    image: avatars[1],
-  },
-  {
-    id: 2,
-    name: "JOINT",
-    designation: "专业排练房负责人",
-    image: avatars[2],
-  },
-];
+import { heroContent } from "@/resources/content";
 
 const textRevealVariants = {
   hidden: { y: "100%" },
@@ -42,28 +20,26 @@ const textRevealVariants = {
 /**
  * Hero section component for HDU Guitar Club
  */
-export function Hero() {
+export const Hero = () => {
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-zinc-950 via-zinc-950 to-zinc-900 pointer-events-none" />
 
-      {/* Subtle radial glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-zinc-800/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-          <span className="text-sm text-zinc-400">校十佳社团 · 成立于2009年</span>
+          <span
+            className={`w-2 h-2 rounded-full ${heroContent.badge.status === "active" ? "bg-emerald-500 pulse-glow" : "bg-zinc-500"}`}
+          />
+          <span className="text-sm text-zinc-400">{heroContent.badge.text}</span>
         </motion.div>
 
-        {/* Headline with text mask animation */}
         <h1
           className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6"
           style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
@@ -76,7 +52,7 @@ export function Hero() {
               animate="visible"
               custom={0}
             >
-              杭电吉协
+              {heroContent.headline}
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -92,53 +68,46 @@ export function Hero() {
           </span>
         </h1>
 
-        {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          杭电吉协是以乐队为核心、以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础的现场型音乐社团。
-          欢迎各种乐器加入，包容各类音乐曲风，只为热爱音乐的你提供纯粹的交流与创作空间。
+          {heroContent.subheadline}
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
-          <Button
-            size="lg"
-            className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
-          >
-            立即加入我们
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-full px-8 h-12 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
-          >
-            预约排练房
-          </Button>
+          {heroContent.ctas.map((cta, index) => (
+            <Button
+              key={cta.label}
+              size="lg"
+              className={
+                cta.variant === "primary"
+                  ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
+                  : "rounded-full px-8 h-12 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
+              }
+              variant={cta.variant === "primary" ? "default" : "outline"}
+            >
+              {cta.label}
+              {index === 0 && <ArrowRight className="ml-2 w-4 h-4" />}
+            </Button>
+          ))}
         </motion.div>
 
-        {/* Social Proof */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
           className="flex flex-col items-center gap-4"
         >
-          {/* 带有动效的乐队头像 */}
-          {/* <div className="flex flex-row">
-            <AnimatedTooltip items={items} />
-          </div> */}
           <div className="flex items-center -space-x-3">
-            {avatars.map((avatar, index) => (
+            {heroContent.socialProof.avatars.map((avatar, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.5, x: -20 }}
@@ -154,12 +123,9 @@ export function Hero() {
               </motion.div>
             ))}
           </div>
-          <p className="text-sm text-zinc-500">
-            已有 <span className="text-zinc-300 font-medium">500+</span>{" "}
-            音乐爱好者加入，传承杭电摇滚精神，期待你站上GR音乐节的舞台
-          </p>
+          <p className="text-sm text-zinc-500">{heroContent.socialProof.description}</p>
         </motion.div>
       </div>
     </section>
   );
-}
+};

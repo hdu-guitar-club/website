@@ -3,6 +3,16 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Music, Guitar, Mic, Users, Smartphone } from "lucide-react";
+import { bentoGridContent } from "@/resources/content";
+import type { TBentoCard } from "@/types/content.types";
+
+const iconMap = {
+  Music: Music,
+  Guitar: Guitar,
+  Mic: Mic,
+  Users: Users,
+  Smartphone: Smartphone,
+};
 
 const containerVariants = {
   hidden: {},
@@ -25,7 +35,7 @@ const itemVariants = {
   },
 };
 
-function SystemStatus() {
+const SystemStatus = () => {
   const [dots, setDots] = useState([true, true, true, false, true]);
 
   useEffect(() => {
@@ -47,9 +57,9 @@ function SystemStatus() {
       ))}
     </div>
   );
-}
+};
 
-function AnimatedChart() {
+const AnimatedChart = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -93,12 +103,85 @@ function AnimatedChart() {
       )}
     </svg>
   );
-}
+};
+
+const BentoCard = (props: { card: TBentoCard }) => {
+  const { card } = props;
+  const Icon = iconMap[card.icon as keyof typeof iconMap];
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      className={`group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300 ${
+        card.span === "wide" ? "md:col-span-2" : ""
+      }`}
+    >
+      {card.type === "metrics" ? (
+        <>
+          <div className="flex items-start justify-between mb-8">
+            <div>
+              <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
+                <Icon className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
+              <p className="text-zinc-400 text-sm">{card.description}</p>
+            </div>
+            {card.systemStatus && <SystemStatus />}
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            {card.metrics.map((metric) => (
+              <div key={metric.label} className="text-center">
+                <div className="text-2xl font-bold text-white mb-1">{metric.value}</div>
+                <div className="text-xs text-zinc-500">{metric.label}</div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : card.type === "tags" ? (
+        <>
+          <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
+            <Icon className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+          </div>
+          <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
+          <p className="text-zinc-400 text-sm mb-6">{card.description}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            {card.tags.map((tag) => (
+              <span key={tag} className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </>
+      ) : card.type === "chart" ? (
+        <>
+          <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
+            <Icon className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+          </div>
+          <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
+          <p className="text-zinc-400 text-sm mb-4">{card.description}</p>
+          <AnimatedChart />
+        </>
+      ) : card.type === "highlight" ? (
+        <>
+          <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
+            <Icon className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
+          </div>
+          <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
+          <p className="text-zinc-400 text-sm mb-4">{card.description}</p>
+          <div className="flex items-center gap-2 text-emerald-500 text-sm">
+            <span className="font-mono">{card.highlight.value}</span>
+            <span className="text-zinc-500">{card.highlight.label}</span>
+          </div>
+        </>
+      ) : null}
+    </motion.div>
+  );
+};
 
 /**
  * Bento grid component showcasing HDU Guitar Club features
  */
-export function BentoGrid() {
+export const BentoGrid = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -115,11 +198,9 @@ export function BentoGrid() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            在这里，音乐没有门槛
+            {bentoGridContent.sectionTitle}
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
-            专业设备、多元乐器、丰富演出，只为热爱音乐的你提供最纯粹的交流与创作空间。
-          </p>
+          <p className="text-zinc-400 max-w-2xl mx-auto">{bentoGridContent.sectionDescription}</p>
         </motion.div>
 
         <motion.div
@@ -129,112 +210,11 @@ export function BentoGrid() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {/* Large card - 专业排练房 */}
-          <motion.div
-            variants={itemVariants}
-            className="md:col-span-2 group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
-          >
-            <div className="flex items-start justify-between mb-8">
-              <div>
-                <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-                  <Music className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">专业排练房</h3>
-                <p className="text-zinc-400 text-sm">
-                  专属活动室学活南A105，24小时开放不锁门。区域划分清晰：公用琴区、吉他区、贝斯区、键盘及合成器区、架子鼓区、音箱区。
-                  另配备箱鼓、各类架子、话筒、凳子等公共物品，成员可将私人乐器放置在排练房内寄存。
-                </p>
-              </div>
-              <SystemStatus />
-            </div>
-            <div className="grid grid-cols-4 gap-4">
-              {["设备可用率", "开放时间", "月排练次数", "成员满意度"].map((metric) => (
-                <div key={metric} className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">
-                    {metric === "设备可用率" && "99%"}
-                    {metric === "开放时间" && "24h"}
-                    {metric === "月排练次数" && "100+"}
-                    {metric === "成员满意度" && "98%"}
-                  </div>
-                  <div className="text-xs text-zinc-500">{metric}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 多元乐器支持 */}
-          <motion.div
-            variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
-          >
-            <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Guitar className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">现场型音乐社团</h3>
-            <p className="text-zinc-400 text-sm mb-6">
-              以乐队为核心，以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础。欢迎各种乐器加入，包容各类音乐曲风，与各大高校开展合作，提供跨校舞台表演机会。
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">摇滚</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">流行</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">民谣</span>
-            </div>
-          </motion.div>
-
-          {/* 丰富演出机会 */}
-          <motion.div
-            variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
-          >
-            <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Mic className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">丰富演出机会</h3>
-            <p className="text-zinc-400 text-sm mb-4">
-              每年固定举办GR音乐节、跨年音乐节、藤廊音乐会、草坪音乐会，承包各学院迎新晚会、校十佳歌手总决赛伴奏，并与各大高校开展合作舞台。
-            </p>
-            <AnimatedChart />
-          </motion.div>
-
-          {/* 零门槛加入 */}
-          <motion.div
-            variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
-          >
-            <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Users className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">零门槛加入</h3>
-            <p className="text-zinc-400 text-sm mb-4">
-              无面试、氛围纯粹，只要对音乐感兴趣，无论新手还是有经验乐手，均可加入。社费仅50元，一次性缴纳，覆盖4年。
-            </p>
-            <div className="flex items-center gap-2 text-emerald-500 text-sm">
-              <span className="font-mono">3天</span>
-              <span className="text-zinc-500">内组队成功</span>
-            </div>
-          </motion.div>
-
-          {/* 全平台运营 */}
-          <motion.div
-            variants={itemVariants}
-            className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
-          >
-            <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
-              <Smartphone className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">全平台运营</h3>
-            <p className="text-zinc-400 text-sm mb-4">
-              全平台官方账号名称均为「杭电吉协」，抖音、B站、微信公众号、小红书同步更新，相关演出、日常内容实时发布，活动现场live超清多角度视频同步上传。
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">抖音</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">B站</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">公众号</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">小红书</span>
-            </div>
-          </motion.div>
+          {bentoGridContent.cards.map((card) => (
+            <BentoCard key={card.id} card={card} />
+          ))}
         </motion.div>
       </div>
     </section>
   );
-}
+};

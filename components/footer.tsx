@@ -3,18 +3,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Logo } from "@/components/site-logo";
-
-const footerLinks = {
-  社团活动: ["GR摇滚节", "日常排练", "乐器教学", "演出合作", "草坪音乐派对"],
-  资源中心: ["排练房预约", "乐器教学资料", "乐队组队平台", "演出视频回顾"],
-  关于我们: ["社团历史", "核心成员", "加入我们", "联系我们"],
-  合规与支持: ["社费使用说明", "排练房设备使用规范", "隐私政策", "版权声明"],
-};
+import { footerContent, socialLinks } from "@/resources/content";
 
 /**
  * Footer component for HDU Guitar Club
  */
-export function Footer() {
+export const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -27,25 +21,20 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-5 gap-8"
         >
-          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Logo className="mb-4" textClassName="hidden sm:block" />
-            <p className="text-sm text-zinc-500 mb-4">
-              杭电吉协——杭州电子科技大学音乐爱好者的纯粹俱乐部，无面试、无官僚，以音乐为纽带，汇聚每一份热爱，传承摇滚精神，打造高校优质音乐社群。
-            </p>
-            {/* System Status */}
+            <p className="text-sm text-zinc-500 mb-4">{footerContent.brand.description}</p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
               <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-              <span className="text-xs text-zinc-400">排练房开放中</span>
+              <span className="text-xs text-zinc-400">{footerContent.brand.statusText}</span>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
+          {footerContent.linkGroups.map((group) => (
+            <div key={group.title}>
+              <h4 className="text-sm font-semibold text-white mb-4">{group.title}</h4>
               <ul className="space-y-3">
-                {links.map((link) => (
+                {group.links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
@@ -60,7 +49,6 @@ export function Footer() {
           ))}
         </motion.div>
 
-        {/* Bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -68,21 +56,25 @@ export function Footer() {
           className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm text-zinc-500">
-            &copy; {new Date().getFullYear()} 杭电吉协 HDU Guitar Club. All rights reserved.
+            &copy; {new Date().getFullYear()} {footerContent.copyright}
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              小红书
-            </a>
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              微信公众号
-            </a>
-            <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              B站
-            </a>
+            {socialLinks
+              .filter((link) => link.enabled)
+              .map((link) => (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-zinc-500 hover:text-white transition-colors"
+                >
+                  {link.title}
+                </a>
+              ))}
           </div>
         </motion.div>
       </div>
     </footer>
   );
-}
+};
