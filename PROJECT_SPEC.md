@@ -25,13 +25,19 @@
 
 ```
 hdjx-website/
-├── app/                    # Next.js App Router
-├── components/             # React 组件
-│   └── ui/                 # UI 基础组件库
-├── content/                # MDX 文档内容
-├── resources/              # 内容配置 (content.tsx)
-├── types/                  # TypeScript 类型定义
-└── hooks/                  # 自定义 Hooks
+├── src/
+│   ├── app/                    # Next.js App Router
+│   ├── components/             # React 组件
+│   │   └── ui/                 # UI 基础组件库
+│   ├── content/                # MDX 文档内容
+│   ├── resources/              # 内容配置
+│   │   ├── content.tsx         # 首页内容配置
+│   │   └── theme.config.tsx    # Nextra 主题配置
+│   ├── types/                  # TypeScript 类型定义
+│   ├── hooks/                  # 自定义 Hooks
+│   ├── lib/                    # 工具函数
+│   └── mdx-components.ts       # MDX 组件配置
+└── public/                     # 静态资源
 ```
 
 ---

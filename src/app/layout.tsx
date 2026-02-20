@@ -8,7 +8,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { layoutConfig } from "@/theme.config";
+import { layoutConfig } from "@/resources/theme.config";
 
 export const metadata: Metadata = {
   /** 替代链接配置 */
@@ -86,13 +86,13 @@ const manrope = Manrope({
 
 const calSans = localFont({
   display: "swap",
-  src: "../public/fonts/CalSans-SemiBold.woff2",
+  src: "../../public/fonts/CalSans-SemiBold.woff2",
   variable: "--font-cal-sans",
 });
 
 const instrumentSans = localFont({
   display: "swap",
-  src: "../public/fonts/InstrumentSans-VariableFont.ttf",
+  src: "../../public/fonts/InstrumentSans-VariableFont.ttf",
   variable: "--font-instrument-sans",
 });
 

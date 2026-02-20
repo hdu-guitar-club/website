@@ -1,7 +1,7 @@
 import { Navbar } from "nextra-theme-docs";
 import { Search } from "nextra/components";
-import { Footer } from "./components/footer";
-import { Logo } from "./components/site-logo";
+import { Footer } from "@/components/footer";
+import { Logo } from "@/components/site-logo";
 
 /**
  * Layout 组件配置
