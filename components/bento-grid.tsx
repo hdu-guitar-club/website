@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion, useInView } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
-import { Music, Guitar, Mic, Users, Smartphone } from "lucide-react"
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { Music, Guitar, Mic, Users, Smartphone } from "lucide-react";
 
 const containerVariants = {
   hidden: {},
@@ -11,7 +11,7 @@ const containerVariants = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -23,17 +23,17 @@ const itemVariants = {
       ease: [0.22, 1, 0.36, 1] as const,
     },
   },
-}
+};
 
 function SystemStatus() {
-  const [dots, setDots] = useState([true, true, true, false, true])
+  const [dots, setDots] = useState([true, true, true, false, true]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDots((prev) => prev.map(() => Math.random() > 0.2))
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
+      setDots((prev) => prev.map(() => Math.random() > 0.2));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex items-center gap-2">
@@ -46,12 +46,12 @@ function SystemStatus() {
         />
       ))}
     </div>
-  )
+  );
 }
 
 function AnimatedChart() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   const points = [
     { x: 0, y: 60 },
@@ -60,11 +60,11 @@ function AnimatedChart() {
     { x: 60, y: 30 },
     { x: 80, y: 40 },
     { x: 100, y: 15 },
-  ]
+  ];
 
   const pathD = points.reduce((acc, point, i) => {
-    return i === 0 ? `M ${point.x} ${point.y}` : `${acc} L ${point.x} ${point.y}`
-  }, "")
+    return i === 0 ? `M ${point.x} ${point.y}` : `${acc} L ${point.x} ${point.y}`;
+  }, "");
 
   return (
     <svg ref={ref} viewBox="0 0 100 70" className="w-full h-24">
@@ -76,20 +76,31 @@ function AnimatedChart() {
       </defs>
       {isInView && (
         <>
-          <path d={`${pathD} L 100 70 L 0 70 Z`} fill="url(#chartGradient)" className="opacity-50" />
-          <path d={pathD} fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" className="draw-line" />
+          <path
+            d={`${pathD} L 100 70 L 0 70 Z`}
+            fill="url(#chartGradient)"
+            className="opacity-50"
+          />
+          <path
+            d={pathD}
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            className="draw-line"
+          />
         </>
       )}
     </svg>
-  )
+  );
 }
 
 /**
- * Bento grid component showcasing HDU Guitar Club features
+ * Bento grid component showcasing HDU Music Club features
  */
 export function BentoGrid() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="features" className="py-24 px-4">
@@ -224,5 +235,5 @@ export function BentoGrid() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

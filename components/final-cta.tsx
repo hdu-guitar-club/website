@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 /**
- * Final CTA section component for HDU Guitar Club
+ * Final CTA section component for HDU Music Club
  */
 export function FinalCTA() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section className="py-24 px-4">
@@ -54,5 +54,5 @@ export function FinalCTA() {
         </p>
       </motion.div>
     </section>
-  )
+  );
 }

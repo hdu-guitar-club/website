@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const plans = [
   {
@@ -49,7 +49,7 @@ const plans = [
     cta: "联系合作",
     highlighted: false,
   },
-]
+];
 
 function BorderBeam() {
   return (
@@ -61,15 +61,15 @@ function BorderBeam() {
         }}
       />
     </div>
-  )
+  );
 }
 
 /**
- * Pricing section component for HDU Guitar Club membership plans
+ * Pricing section component for HDU Music Club membership plans
  */
 export function Pricing() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="pricing" className="py-24 px-4">
@@ -152,5 +152,5 @@ export function Pricing() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

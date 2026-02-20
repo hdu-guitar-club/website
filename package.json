@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "next lint",
     "sort": "sort-package-json",
     "start": "next start"
   },

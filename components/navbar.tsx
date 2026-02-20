@@ -1,24 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/site-logo";
 
 const navItems = [
   { label: "社团活动", href: "#features" },
   { label: "加入我们", href: "#pricing" },
   { label: "资源中心", href: "#resources" },
   { label: "关于我们", href: "#about" },
-]
+];
 
 /**
- * Navbar component for HDU Guitar Club
+ * Navbar component for HDU Music Club
  */
 export function Navbar() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const navRef = useRef<HTMLDivElement>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   return (
     <motion.header
@@ -32,12 +33,7 @@ export function Navbar() {
         className="relative flex items-center justify-between px-4 py-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800"
       >
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-            <span className="text-zinc-950 font-bold text-sm">吉</span>
-          </div>
-          <span className="font-semibold text-white hidden sm:block">杭电吉协</span>
-        </a>
+        <Logo />
 
         {/* Desktop Nav Items */}
         <div className="hidden md:flex items-center gap-1 relative">
@@ -64,10 +60,17 @@ export function Navbar() {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white hover:bg-zinc-800">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+          >
             排练房预约
           </Button>
-          <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
+          <Button
+            size="sm"
+            className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4"
+          >
             立即加入
           </Button>
         </div>
@@ -105,10 +108,12 @@ export function Navbar() {
             <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white">
               排练房预约
             </Button>
-            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">立即加入</Button>
+            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
+              立即加入
+            </Button>
           </div>
         </motion.div>
       )}
     </motion.header>
-  )
+  );
 }

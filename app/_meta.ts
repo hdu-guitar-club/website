@@ -1,33 +1,31 @@
 export default {
   index: {
-    display: 'hidden',
+    display: "hidden",
   },
   docs: {
-    type: 'page',
-    title: 'Documentation',
+    type: "page",
+    title: "活动记录",
   },
-  community: {
-    title: 'Community',
-    type: 'menu',
+  social: {
+    title: "关注我们",
+    type: "menu",
     items: {
-      blog: {
-        title: 'Blog',
-        href: 'https://undolog.com/',
+      bilibili: {
+        title: "bilibili",
+        href: "https://space.bilibili.com/522982714",
       },
-      medium: {
-        title: 'Medium',
-        href: 'https://medium.com/@giovambattista.fazioli',
+      douyin: {
+        title: "抖音",
+        href: "https://www.douyin.com/user/MS4wLjABAAAAGYFt_v-6g1kQGQc3AsNe9E42kXjHrfdPXF2NMUT7BTw",
+      },
+      rednote: {
+        title: "小红书",
+        href: "https://xhslink.com/m/7L70LXU8nxD",
+      },
+      wechat: {
+        title: "微信公众号",
+        href: "https://weixin.qq.com/",
       },
     },
-  },
-  about: {
-    type: 'page',
-    title: 'About',
-    href: 'https://github.com/gfazioli',
-  },
-  sponsor: {
-    type: 'page',
-    title: 'Sponsors',
-    href: 'https://github.com/sponsors/gfazioli?o=esb',
   },
 };

@@ -25,7 +25,7 @@ const textRevealVariants = {
 };
 
 /**
- * Hero section component for HDU Guitar Club
+ * Hero section component for HDU Music Club
  */
 export function Hero() {
   return (
@@ -72,7 +72,7 @@ export function Hero() {
               animate="visible"
               custom={1}
             >
-              HDU Guitar Club
+              HDU Music Club
             </motion.span>
           </span>
         </h1>
