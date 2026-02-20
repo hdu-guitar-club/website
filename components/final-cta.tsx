@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
- * Final CTA section component for HDU Music Club
+ * Final CTA section component for HDU Guitar Club
  */
 export function FinalCTA() {
   const ref = useRef(null);

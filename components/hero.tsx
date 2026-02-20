@@ -25,7 +25,7 @@ const textRevealVariants = {
 };
 
 /**
- * Hero section component for HDU Music Club
+ * Hero section component for HDU Guitar Club
  */
 export function Hero() {
   return (
@@ -45,7 +45,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-          <span className="text-sm text-zinc-400">排练房开放中</span>
+          <span className="text-sm text-zinc-400">校十佳社团 · 成立于2009年</span>
         </motion.div>
 
         {/* Headline with text mask animation */}
@@ -72,7 +72,7 @@ export function Hero() {
               animate="visible"
               custom={1}
             >
-              HDU Music Club
+              HDU Guitar Club
             </motion.span>
           </span>
         </h1>
@@ -84,8 +84,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          杭电吉协是杭州电子科技大学的音乐爱好者俱乐部，无面试、无官僚，只为热爱音乐的你提供纯粹的交流与创作空间，
-          这里有专业排练房、志同道合的伙伴，还有无限演出可能。
+          杭电吉协是以乐队为核心、以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础的现场型音乐社团。
+          欢迎各种乐器加入，包容各类音乐曲风，只为热爱音乐的你提供纯粹的交流与创作空间。
         </motion.p>
 
         {/* CTAs */}
@@ -137,7 +137,7 @@ export function Hero() {
           </div>
           <p className="text-sm text-zinc-500">
             已有 <span className="text-zinc-300 font-medium">500+</span>{" "}
-            音乐爱好者加入，几十支乐队在此成长，传承杭电摇滚精神
+            音乐爱好者加入，传承杭电摇滚精神，期待你站上GR音乐节的舞台
           </p>
         </motion.div>
       </div>

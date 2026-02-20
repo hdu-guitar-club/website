@@ -13,13 +13,13 @@ export const layoutConfig = {
   /** 是否显示深色模式切换按钮 */
   darkMode: false,
   /** 文档仓库基础 URL */
-  docsRepositoryBase: "https://github.com/hdu-guitar-club/website",
+  docsRepositoryBase: "https://github.com/hdu-guitar-club/website/blob/main",
   /** 编辑链接文本 */
-  editLink: "在 GitHub 上编辑此页 →",
+  editLink: "在 GitHub 上编辑此页",
   /** 反馈链接配置 */
   feedback: {
     /** 反馈链接文本 */
-    content: "有问题？给我们反馈 →",
+    content: "有问题？给我们反馈",
     /** 新建 issue 时添加的标签 */
     labels: "feedback",
   },

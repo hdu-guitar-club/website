@@ -65,7 +65,7 @@ function BorderBeam() {
 }
 
 /**
- * Pricing section component for HDU Music Club membership plans
+ * Pricing section component for HDU Guitar Club membership plans
  */
 export function Pricing() {
   const ref = useRef(null);

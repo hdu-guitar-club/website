@@ -4,7 +4,7 @@ export default {
   },
   docs: {
     type: "page",
-    title: "活动记录",
+    title: "吉协百科",
   },
   social: {
     title: "关注我们",

@@ -12,7 +12,7 @@ const footerLinks = {
 };
 
 /**
- * Footer component for HDU Music Club
+ * Footer component for HDU Guitar Club
  */
 export function Footer() {
   const ref = useRef(null);
@@ -68,7 +68,7 @@ export function Footer() {
           className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-sm text-zinc-500">
-            &copy; {new Date().getFullYear()} 杭电吉协 HDU Music Club. All rights reserved.
+            &copy; {new Date().getFullYear()} 杭电吉协 HDU Guitar Club. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">

@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 /**
- * Navbar component for HDU Music Club
+ * Navbar component for HDU Guitar Club
  */
 export function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

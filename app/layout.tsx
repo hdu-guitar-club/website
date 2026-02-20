@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   /** 网站关键词 */
   keywords: [
     "杭电吉协",
-    "HDU Music Club",
+    "HDU Guitar Club",
     "杭州电子科技大学",
     "吉他社团",
     "音乐社团",

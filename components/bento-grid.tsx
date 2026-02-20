@@ -96,7 +96,7 @@ function AnimatedChart() {
 }
 
 /**
- * Bento grid component showcasing HDU Music Club features
+ * Bento grid component showcasing HDU Guitar Club features
  */
 export function BentoGrid() {
   const ref = useRef(null);
@@ -141,18 +141,18 @@ export function BentoGrid() {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">专业排练房</h3>
                 <p className="text-zinc-400 text-sm">
-                  专属活动室学活南A105，配备全国高校顶尖音响设备、完整鼓组、公用吉他/贝斯等，
-                  设备可用率99%，每周开放40+小时，月均接待100+次排练，夜晚的排练房总有琴弦舞动与鼓点跳跃，见证每一份音乐热爱的成长。
+                  专属活动室学活南A105，24小时开放不锁门。区域划分清晰：公用琴区、吉他区、贝斯区、键盘及合成器区、架子鼓区、音箱区。
+                  另配备箱鼓、各类架子、话筒、凳子等公共物品，成员可将私人乐器放置在排练房内寄存。
                 </p>
               </div>
               <SystemStatus />
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {["设备可用率", "周开放时长", "月排练次数", "成员满意度"].map((metric) => (
+              {["设备可用率", "开放时间", "月排练次数", "成员满意度"].map((metric) => (
                 <div key={metric} className="text-center">
                   <div className="text-2xl font-bold text-white mb-1">
                     {metric === "设备可用率" && "99%"}
-                    {metric === "周开放时长" && "40+h"}
+                    {metric === "开放时间" && "24h"}
                     {metric === "月排练次数" && "100+"}
                     {metric === "成员满意度" && "98%"}
                   </div>
@@ -170,14 +170,14 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Guitar className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">多元乐器支持</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">现场型音乐社团</h3>
             <p className="text-zinc-400 text-sm mb-6">
-              不止于吉他！吉协涵盖鼓、木吉他、电吉他、贝斯、键盘等各类乐器，只要你热爱音乐，无论擅长哪种乐器，都能找到专属位置。
+              以乐队为核心，以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础。欢迎各种乐器加入，包容各类音乐曲风，与各大高校开展合作，提供跨校舞台表演机会。
             </p>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">JPOP</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">朋克</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">流行摇滚</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">摇滚</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">流行</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">民谣</span>
             </div>
           </motion.div>
 
@@ -191,7 +191,7 @@ export function BentoGrid() {
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">丰富演出机会</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              承包各学院迎新演出、校园十佳歌手决赛伴奏，每年固定举办GR摇滚节、藤廊音乐会、草坪音乐派对，登上MAO等Livehouse舞台。
+              每年固定举办GR音乐节、跨年音乐节、藤廊音乐会、草坪音乐会，承包各学院迎新晚会、校十佳歌手总决赛伴奏，并与各大高校开展合作舞台。
             </p>
             <AnimatedChart />
           </motion.div>
@@ -206,7 +206,7 @@ export function BentoGrid() {
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">零门槛加入</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              无面试、无官僚主义，只要对音乐感兴趣，无论新手还是有经验乐手，均可加入。社费仅50元，一次性缴纳，覆盖4年。
+              无面试、氛围纯粹，只要对音乐感兴趣，无论新手还是有经验乐手，均可加入。社费仅50元，一次性缴纳，覆盖4年。
             </p>
             <div className="flex items-center gap-2 text-emerald-500 text-sm">
               <span className="font-mono">3天</span>
@@ -224,12 +224,13 @@ export function BentoGrid() {
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">全平台运营</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              小红书、微信公众号、bilibili均有官方账号，同步活动预告、演出视频、教学资料。排练房预约小程序开发中。
+              全平台官方账号名称均为「杭电吉协」，抖音、B站、微信公众号、小红书同步更新，相关演出、日常内容实时发布，活动现场live超清多角度视频同步上传。
             </p>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">小红书</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">公众号</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">抖音</span>
               <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">B站</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">公众号</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">小红书</span>
             </div>
           </motion.div>
         </motion.div>

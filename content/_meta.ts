@@ -2,13 +2,13 @@ export default {
   index: {
     title: '首页',
   },
-  'getting-started': {
-    title: '快速开始',
+  'about': {
+    title: '关于我们',
   },
-  components: {
-    title: '组件',
+  'activities': {
+    title: '活动一览',
   },
-  guides: {
-    title: '指南',
+  'guide': {
+    title: '新生指南',
   },
 };
