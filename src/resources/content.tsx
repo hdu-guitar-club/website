@@ -100,7 +100,7 @@ export const bentoGridContent: IBentoGridContent = {
       icon: "Guitar",
       title: "现场型音乐社团",
       description:
-        "以乐队为核心，以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础。欢迎各种乐器加入，包容各类音乐曲风，与各大高校开展合作，提供跨校舞台表演机会。",
+        "以乐队为核心，以乐队四大件（吉他、贝斯、键盘、鼓）+ 主唱为基础。欢迎各种乐器加入，包容各类音乐曲风，与各大高校开展合作，提供跨校舞台表演机会。",
       type: "tags",
       tags: ["摇滚", "流行", "民谣"],
     },
@@ -138,12 +138,25 @@ export const bentoGridContent: IBentoGridContent = {
 
 export const pricingContent: IPricingContent = {
   enabled: true,
-  sectionTitle: "加入杭电吉协",
-  sectionDescription:
-    "一次缴费，四年受益。所有成员平等享受社团资源，费用全部用于排练房设备维护、演出举办，透明公开。",
+  sectionTitle: "加入与合作",
+  sectionDescription: "无论你是想加入吉协、还是寻求活动合作，我们都期待与你相遇。",
   plans: [
     {
-      name: "普通成员",
+      name: "院学生会/学校合作",
+      description: "迎新晚会、十佳歌手等活动合作",
+      price: "按活动协商",
+      features: [
+        "迎新晚会乐队演出对接",
+        "十佳歌手伴奏合作",
+        "校园音乐节联合举办",
+        "定制音乐节目编排",
+        "专业设备与场地支持",
+      ],
+      cta: "预约演出",
+      highlighted: false,
+    },
+    {
+      name: "加入杭电吉协",
       description: "适合所有热爱音乐的同学",
       price: "50元/4年",
       features: [
@@ -151,31 +164,17 @@ export const pricingContent: IPricingContent = {
         "参与社团日常活动、乐器教学",
         "加入社团专属社群",
         "优先预约排练时段",
-        "观看各类演出活动",
-      ],
-      cta: "缴纳社费加入",
-      highlighted: false,
-    },
-    {
-      name: "核心成员/乐队成员",
-      description: "深度参与社团核心活动",
-      price: "无额外费用",
-      features: [
-        "包含在50元社费内",
-        "优先参与各类演出、GR摇滚节等核心活动",
-        "享受专业音乐指导与设备优先使用权",
-        "支持原创作品创作与展示",
-        "拥有专属排练时段",
+        "参与各类演出活动",
         "可代表吉协参与外校交流演出",
       ],
-      cta: "申请成为核心成员",
+      cta: "立即加入",
       highlighted: true,
       badge: "推荐",
     },
     {
-      name: "合作/赞助方",
-      description: "与杭电吉协携手共创",
-      price: "联系我们详谈",
+      name: "商业合作/赞助",
+      description: "品牌合作与活动赞助",
+      price: "按项目协商",
       features: [
         "冠名社团演出与活动（如GR摇滚节）",
         "获得品牌露出与宣传机会",
@@ -183,7 +182,7 @@ export const pricingContent: IPricingContent = {
         "参与社团专属活动策划",
         "对接吉协优秀乐队资源",
       ],
-      cta: "联系合作",
+      cta: "商务咨询",
       highlighted: false,
     },
   ],
@@ -193,7 +192,7 @@ export const finalCTAContent: IFinalCTAContent = {
   enabled: true,
   headline: "准备好加入我们，一起玩音乐了吗？",
   description:
-    "加入杭电吉协，在学活南A105的专业排练房里，和志同道合的伙伴一起组乐队、练乐器、办演出，释放你的音乐热爱；这里有理工男的浪漫与热血，有小众音乐的坚守与绽放，每一份热爱都能被看见、被听见。",
+    "加入杭电吉协，在学活南A105的专业排练房里，和志同道合的伙伴一起组乐队、练乐器、办演出，释放你的音乐热爱；这里有杭电学子的浪漫与热血，有小众音乐的坚守与绽放，每一份热爱都能被看见、被听见。",
   ctas: [
     { label: "立即加入", variant: "primary" },
     { label: "咨询排练/演出", variant: "outline" },

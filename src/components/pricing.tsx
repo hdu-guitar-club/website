@@ -94,7 +94,7 @@ export const Pricing = () => {
               </ul>
 
               <Button
-                className={`w-full rounded-full ${
+                className={`w-full rounded-full cursor-pointer ${
                   plan.highlighted
                     ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200"
                     : "bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-700"
