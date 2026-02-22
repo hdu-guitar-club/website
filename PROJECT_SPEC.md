@@ -4,8 +4,8 @@
 
 **项目名称**: hdjx-website  
 **定位**: 杭电吉协 (HDU Guitar Club) 官方网站与文档系统  
-**部署**: Vercel → https://hdu-guitar-club.vercel.app/  
-**仓库**: https://github.com/hdu-guitar-club/website
+**部署**: Vercel → <https://hdu-guitar-club.vercel.app/>  
+**仓库**: <https://github.com/hdu-guitar-club/website>
 
 ---
 
@@ -23,20 +23,20 @@
 
 ## 项目结构
 
-```
+```text
 hdjx-website/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   ├── components/             # React 组件
+├── app/                        # Next.js App Router
+│   ├── _components/            # React 组件
 │   │   └── ui/                 # UI 基础组件库
-│   ├── content/                # MDX 文档内容
-│   ├── resources/              # 内容配置
+│   ├── _resources/             # 内容配置
 │   │   ├── content.tsx         # 首页内容配置
 │   │   └── theme.config.tsx    # Nextra 主题配置
-│   ├── types/                  # TypeScript 类型定义
-│   ├── hooks/                  # 自定义 Hooks
-│   ├── lib/                    # 工具函数
-│   └── mdx-components.ts       # MDX 组件配置
+│   ├── _types/                 # TypeScript 类型定义
+│   ├── _hooks/                 # 自定义 Hooks
+│   ├── _lib/                   # 工具函数
+│   └── docs/                   # 文档路由
+├── content/                    # MDX 文档内容
+├── mdx-components.ts           # MDX 组件配置
 └── public/                     # 静态资源
 ```
 
@@ -59,13 +59,13 @@ hdjx-website/
 
 ### 内容建模系统
 
-首页内容抽象为配置文件 (`resources/content.tsx`)，支持动态控制：
+首页内容抽象为配置文件 (`app/_resources/content.tsx`)，支持动态控制：
 
 - 每个区域有 `enabled` 字段控制显示
 - `socialLinks` 作为独立实体，在导航栏和页脚复用
 - 定价方案支持可选 `badge` 字段
 
-类型定义见 `types/content.types.ts`
+类型定义见 `app/_types/content.types.ts`
 
 ### 文档系统
 
@@ -83,7 +83,7 @@ hdjx-website/
 
 ### 导航 (`app/_meta.ts`)
 
-社交链接从 `resources/content.tsx` 的 `socialLinks` 生成
+社交链接从 `app/_resources/content.tsx` 的 `socialLinks` 生成
 
 ---
 
@@ -131,5 +131,5 @@ hdjx-website/
 
 ## 社交媒体
 
-- Bilibili: https://space.bilibili.com/522982714
-- 抖音 / 小红书 / 微信公众号 (见 `resources/content.tsx`)
+- Bilibili: <https://space.bilibili.com/522982714>
+- 抖音 / 小红书 / 微信公众号 (见 `app/_resources/content.tsx`)
