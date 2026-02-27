@@ -14,6 +14,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = withBundleAnalyzer(
   withNextra({
     reactStrictMode: true,
+    i18n: {
+      locales: ["zh", "en"],
+      defaultLocale: "zh",
+    },
   }),
 );
 

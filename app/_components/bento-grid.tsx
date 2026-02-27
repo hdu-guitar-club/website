@@ -3,8 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Music, Guitar, Mic, Users, Smartphone } from "lucide-react";
-import { bentoGridContent } from "../_resources/content";
-import type { TBentoCard } from "../_types/content.types";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 const iconMap = {
   Music: Music,
@@ -105,7 +104,7 @@ const AnimatedChart = () => {
   );
 };
 
-const BentoCard = (props: { card: TBentoCard }) => {
+const BentoCard = (props: { card: any }) => {
   const { card } = props;
   const Icon = iconMap[card.icon as keyof typeof iconMap];
 
@@ -129,7 +128,7 @@ const BentoCard = (props: { card: TBentoCard }) => {
             {card.systemStatus && <SystemStatus />}
           </div>
           <div className="grid grid-cols-4 gap-4">
-            {card.metrics.map((metric) => (
+            {card.metrics.map((metric: { label: string; value: string }) => (
               <div key={metric.label} className="text-center">
                 <div className="text-2xl font-bold text-white mb-1">{metric.value}</div>
                 <div className="text-xs text-zinc-500">{metric.label}</div>
@@ -145,7 +144,7 @@ const BentoCard = (props: { card: TBentoCard }) => {
           <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
           <p className="text-zinc-400 text-sm mb-6">{card.description}</p>
           <div className="flex items-center gap-2 flex-wrap">
-            {card.tags.map((tag) => (
+            {card.tags.map((tag: string) => (
               <span key={tag} className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">
                 {tag}
               </span>
@@ -184,6 +183,13 @@ const BentoCard = (props: { card: TBentoCard }) => {
 export const BentoGrid = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { dictionary } = useDictionary();
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const content = dictionary.landing.bentoGrid;
 
   return (
     <section id="features" className="py-24 px-4">
@@ -198,9 +204,9 @@ export const BentoGrid = () => {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            {bentoGridContent.sectionTitle}
+            {content.sectionTitle}
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">{bentoGridContent.sectionDescription}</p>
+          <p className="text-zinc-400 max-w-2xl mx-auto">{content.sectionDescription}</p>
         </motion.div>
 
         <motion.div
@@ -210,7 +216,7 @@ export const BentoGrid = () => {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {bentoGridContent.cards.map((card) => (
+          {content.cards.map((card) => (
             <BentoCard key={card.id} card={card} />
           ))}
         </motion.div>

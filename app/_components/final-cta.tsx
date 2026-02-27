@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { finalCTAContent } from "../_resources/content";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 /**
  * Final CTA section component for HDU Guitar Club
@@ -12,6 +12,13 @@ import { finalCTAContent } from "../_resources/content";
 export const FinalCTA = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { dictionary } = useDictionary();
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const content = dictionary.landing.finalCTA;
 
   return (
     <section className="py-24 px-4">
@@ -26,14 +33,14 @@ export const FinalCTA = () => {
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight"
           style={{ fontFamily: "var(--font-cal-sans)" }}
         >
-          {finalCTAContent.headline}
+          {content.headline}
         </h2>
         <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-          {finalCTAContent.description}
+          {content.description}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          {finalCTAContent.ctas.map((cta, index) => (
+          {content.ctas.map((cta, index) => (
             <Button
               key={cta.label}
               size="lg"
@@ -50,7 +57,7 @@ export const FinalCTA = () => {
           ))}
         </div>
 
-        <p className="mt-8 text-sm text-zinc-500">{finalCTAContent.note}</p>
+        <p className="mt-8 text-sm text-zinc-500">{content.note}</p>
       </motion.div>
     </section>
   );

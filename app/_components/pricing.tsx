@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check } from "lucide-react";
 import { Button } from "./ui/button";
-import { pricingContent } from "../_resources/content";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 const BorderBeam = () => {
   return (
@@ -25,6 +25,13 @@ const BorderBeam = () => {
 export const Pricing = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { dictionary } = useDictionary();
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const content = dictionary.landing.pricing;
 
   return (
     <section id="pricing" className="py-24 px-4">
@@ -39,10 +46,10 @@ export const Pricing = () => {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            {pricingContent.sectionTitle}
+            {content.sectionTitle}
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
-            {pricingContent.sectionDescription}
+            {content.sectionDescription}
           </p>
         </motion.div>
 
@@ -53,7 +60,7 @@ export const Pricing = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {pricingContent.plans.map((plan, index) => (
+          {content.plans.map((plan, index) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}

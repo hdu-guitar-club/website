@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { logoMarqueeContent } from "../_resources/content";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 /**
  * Logo marquee component showing partners and bands
@@ -10,6 +10,13 @@ import { logoMarqueeContent } from "../_resources/content";
 export const LogoMarquee = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { dictionary } = useDictionary();
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const content = dictionary.landing.logoMarquee;
 
   return (
     <section ref={ref} className="py-16 overflow-hidden">
@@ -20,7 +27,7 @@ export const LogoMarquee = () => {
         className="text-center mb-10"
       >
         <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">
-          {logoMarqueeContent.title}
+          {content.title}
         </p>
       </motion.div>
 
@@ -29,7 +36,7 @@ export const LogoMarquee = () => {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
 
         <div className="flex animate-marquee">
-          {[...logoMarqueeContent.logos, ...logoMarqueeContent.logos].map((logo, index) => (
+          {[...content.logos, ...content.logos].map((logo, index) => (
             <div
               key={index}
               className="flex items-center justify-center min-w-[160px] h-16 mx-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"

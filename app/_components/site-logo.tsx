@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 interface ILogoProps {
   showText?: boolean;
@@ -14,9 +17,12 @@ interface ILogoProps {
  */
 export const Logo = (props: ILogoProps) => {
   const { showText = true, size = "md", textClassName = "", asLink = true, className = "" } = props;
+  const { dictionary } = useDictionary();
 
   const iconSize = size === "sm" ? 18 : 24;
   const containerSize = size === "sm" ? "w-6 h-6" : "w-8 h-8";
+
+  const logoConfig = dictionary?.logo;
 
   const content = (
     <>
@@ -25,14 +31,14 @@ export const Logo = (props: ILogoProps) => {
       >
         <Image
           src="/logo-circle.svg"
-          alt="杭电吉协"
+          alt={logoConfig?.alt || "杭电吉协"}
           width={iconSize}
           height={iconSize}
           className="object-contain"
         />
       </div>
       {showText && (
-        <span className={`font-semibold text-white ${textClassName}`.trim()}>杭电吉协</span>
+        <span className={`font-semibold text-white ${textClassName}`.trim()}>{logoConfig?.text || "杭电吉协"}</span>
       )}
     </>
   );

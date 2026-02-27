@@ -36,6 +36,19 @@ export const socialLinks: ISocialLink[] = [
   },
 ];
 
+export const socialMenuItems = socialLinks
+  .filter((link) => link.enabled)
+  .reduce(
+    (acc, link) => {
+      acc[link.id] = {
+        title: link.title,
+        href: link.href,
+      };
+      return acc;
+    },
+    {} as Record<string, { title: string; href: string }>,
+  );
+
 export const heroContent: IHeroContent = {
   enabled: true,
   badge: {
@@ -43,7 +56,7 @@ export const heroContent: IHeroContent = {
     text: "校十佳社团 · 成立于2009年",
   },
   headline: "杭电吉协",
-  subheadline:
+  subheadlinePrimary:
     "杭电吉协是以乐队为核心、以乐队四大件（吉他、贝斯、键盘、鼓）＋主唱为基础的现场型音乐社团。欢迎各种乐器加入，包容各类音乐曲风，只为热爱音乐的你提供纯粹的交流与创作空间。",
   ctas: [
     { label: "立即加入我们", variant: "primary" },

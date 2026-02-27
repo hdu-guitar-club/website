@@ -25,19 +25,14 @@
 
 ```text
 hdjx-website/
-├── app/                        # Next.js App Router
-│   ├── _components/            # React 组件
-│   │   └── ui/                 # UI 基础组件库
-│   ├── _resources/             # 内容配置
-│   │   ├── content.tsx         # 首页内容配置
-│   │   └── theme.config.tsx    # Nextra 主题配置
-│   ├── _types/                 # TypeScript 类型定义
-│   ├── _hooks/                 # 自定义 Hooks
-│   ├── _lib/                   # 工具函数
-│   └── docs/                   # 文档路由
-├── content/                    # MDX 文档内容
-├── mdx-components.ts           # MDX 组件配置
-└── public/                     # 静态资源
+├── app/[lang]/              # 国际化路由
+│   ├── _components/         # React 组件
+│   ├── _dictionaries/      # i18n 字典
+│   ├── _resources/         # 内容配置
+│   └── docs/              # 文档路由
+├── content/               # MDX 文档内容（zh/en）
+├── mdx-components.ts      # MDX 组件配置
+└── public/               # 静态资源
 ```
 
 ---
@@ -55,21 +50,16 @@ hdjx-website/
 | FinalCTA    | 最终行动号召                  |
 | Footer      | 页脚链接 + 版权               |
 
-**导航**: 使用 Nextra 自带导航栏，配置见 `app/_meta.ts`
+### 国际化 (i18n)
 
-### 内容建模系统
-
-首页内容抽象为配置文件 (`app/_resources/content.tsx`)，支持动态控制：
-
-- 每个区域有 `enabled` 字段控制显示
-- `socialLinks` 作为独立实体，在导航栏和页脚复用
-- 定价方案支持可选 `badge` 字段
-
-类型定义见 `app/_types/content.types.ts`
+- **路由**: `/[lang]/*` 支持中英文路由
+- **字典**: `app/_dictionaries/` 管理多语言文案
+- **Hook**: `useDictionary()` 提供客户端字典访问
+- **内容**: `content/zh/` 和 `content/en/` 分离中英文 MDX
 
 ### 文档系统
 
-- **路由**: `/docs/*` → Nextra MDX 渲染
+- **路由**: `/[lang]/docs/*` → Nextra MDX 渲染
 - **特性**: 全文搜索、目录导航、代码高亮、LaTeX 支持
 
 ---
@@ -79,11 +69,13 @@ hdjx-website/
 ### Nextra 主题 (`theme.config.tsx`)
 
 - 强制深色主题，禁用主题切换
-- 文档路径: `/docs`
+- 文档路径: `/[lang]/docs`
+- 通过 `getLayoutConfig(dictionary)` 动态配置 i18n 文案
 
-### 导航 (`app/_meta.ts`)
+### 导航配置
 
-社交链接从 `app/_resources/content.tsx` 的 `socialLinks` 生成
+- `content/zh/_meta.ts` 和 `content/en/_meta.ts` 配置菜单
+- `content/_social-links.ts` 统一管理社交媒体链接
 
 ---
 
@@ -114,10 +106,11 @@ hdjx-website/
 
 ## 路由
 
-| 路径      | 描述     |
-| --------- | -------- |
-| `/`       | 首页     |
-| `/docs/*` | MDX 文档 |
+| 路径             | 描述     |
+| ---------------- | -------- |
+| `/zh/*`          | 中文页面 |
+| `/en/*`          | 英文页面 |
+| `/[lang]/docs/*` | MDX 文档 |
 
 ---
 
@@ -132,4 +125,4 @@ hdjx-website/
 ## 社交媒体
 
 - Bilibili: <https://space.bilibili.com/522982714>
-- 抖音 / 小红书 / 微信公众号 (见 `app/_resources/content.tsx`)
+- 其他平台: 见 `content/_social-links.ts`

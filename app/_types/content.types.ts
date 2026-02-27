@@ -27,7 +27,7 @@ export interface IHeroContent {
   enabled: boolean;
   badge: IBadge;
   headline: string;
-  subheadline: string;
+  subheadlinePrimary: string;
   ctas: IButtonConfig[];
   socialProof: {
     avatars: string[];

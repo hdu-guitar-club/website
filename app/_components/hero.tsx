@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { heroContent } from "../_resources/content";
+import { useDictionary } from "../_hooks/use-dictionary";
 
 const textRevealVariants = {
   hidden: { y: "100%" },
@@ -21,6 +21,14 @@ const textRevealVariants = {
  * Hero section component for HDU Guitar Club
  */
 export const Hero = () => {
+  const { dictionary } = useDictionary();
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const content = dictionary.landing.hero;
+
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-b from-zinc-950 via-zinc-950 to-zinc-900 pointer-events-none" />
@@ -34,10 +42,8 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 mb-8"
         >
-          <span
-            className={`w-2 h-2 rounded-full ${heroContent.badge.status === "active" ? "bg-emerald-500 pulse-glow" : "bg-zinc-500"}`}
-          />
-          <span className="text-sm text-zinc-400">{heroContent.badge.text}</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
+          <span className="text-sm text-zinc-400">{content.badge.text}</span>
         </motion.div>
 
         <h1
@@ -52,7 +58,7 @@ export const Hero = () => {
               animate="visible"
               custom={0}
             >
-              {heroContent.headline}
+              {content.headline}
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -63,7 +69,7 @@ export const Hero = () => {
               animate="visible"
               custom={1}
             >
-              HDU Guitar Club
+              {content.subheadlineSecondary}
             </motion.span>
           </span>
         </h1>
@@ -74,7 +80,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          {heroContent.subheadline}
+          {content.description}
         </motion.p>
 
         <motion.div
@@ -83,7 +89,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
-          {heroContent.ctas.map((cta, index) => (
+          {content.ctas.map((cta, index) => (
             <Button
               key={cta.label}
               size="lg"
@@ -107,7 +113,7 @@ export const Hero = () => {
           className="flex flex-col items-center gap-4"
         >
           <div className="flex items-center -space-x-3">
-            {heroContent.socialProof.avatars.map((avatar, index) => (
+            {content.socialProof.avatars.map((avatar, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.5, x: -20 }}
@@ -123,7 +129,13 @@ export const Hero = () => {
               </motion.div>
             ))}
           </div>
-          <p className="text-sm text-zinc-500">{heroContent.socialProof.description}</p>
+          <p className="text-sm text-zinc-500">
+            {content.socialProof.description.prefix}{" "}
+            <span className="text-zinc-300 font-medium">
+              {content.socialProof.description.count}
+            </span>{" "}
+            {content.socialProof.description.middle}
+          </p>
         </motion.div>
       </div>
     </section>
